@@ -19,7 +19,6 @@
             </ul>
         </nav>
     </header>
-
     <!-- Barra de busca -->
     <section>
         <form>
@@ -27,6 +26,34 @@
             <button type="submit">🔍</button>
         </form>
     </section>
+    <main>
+        <section>
+            <h2>Cadastre seu comércio</h2>
+            <p>Preencha os dados do seu comércio para concluir seu cadastro!</p>
+            <form id="form-cadastro">
+                <label for="nome-comercio">Nome do comércio</label><br>
+                <input type="text" id="nome-comercio" name="nome-comercio" required><br><br>
+                
+                <label for="descricao">Descrição:</label><br>
+                <textarea id="descricao" name="descricao" rows="4" cols="50" placeholder="Nos diga sobre seu negócio..."></textarea><br><br>
+
+                <label for="categoria">Categoria</label><br>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="alimentacao">🍔 Alimentação</option>
+                    <option value="saude">❤️ Saúde e Bem-Estar</option>
+                    <option value="servicos-domesticos">🏠 Serviços Domésticos</option>
+                    <option value="educacao">📚 Educação</option>
+                    <option value="outros">⚙️ Outros</option>
+                </select><br><br>
+
+                <label for="horario">Horário de Funcionamento:</label><br>
+                <input type="text" id="horario" name="horario" placeholder="Ex: Seg-Sex: 8h às 18h"><br><br>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+        </section>
+    </main>
     <!-- Rodapé -->
     <footer>
         <nav>
