@@ -15,9 +15,9 @@ O **Guia do Bairro** é uma plataforma digital desenvolvida com o objetivo de co
 ## Estrutura do Projeto
 - **index.html** – Página inicial com mapa interativo (em construção) e categorias de comércio.  
 - **catalogo.html** – Catálogo de negócios organizados por categorias.  
-- **registrocomercio.html** – Página de cadastro de comércio.
+- **registrocomercio.html** – Página de cadastro de comércio.  
 - **padaria.html** – Página individual de um comércio fictício (Padaria do João).  
-- **clinica.html** – Página individual de um comércio fictício (Clínica Saúde Mais).  
+- **oficina.html** – Página individual de um comércio fictício (Oficina Mecânica Souza).  
 - **sobre.html** – Página institucional "Sobre Nós".  
 - **ajuda.html** – Página de Perguntas Frequentes (FAQ).  
 - **politicadeprivacidade.html** – Página de Política de Privacidade.  
