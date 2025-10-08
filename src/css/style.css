@@ -220,6 +220,49 @@ aside button:hover {
   background: #728991;
   color: #eaf4f2;
 }
+.card {
+  background: #fff;
+  border: 1px solid #aec7c3;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(24,23,54,0.08);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 24px rgba(24,23,54,0.16);
+  border-color: #728991;
+}
+
+.card h3 {
+  color: #181736;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #728991;
+}
+
+.card a {
+  align-self: flex-end;
+  background: #aec7c3;
+  color: #181736;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.card a:hover {
+  background: #728991;
+  color: #eaf4f2;
+}
+
 
 /*RESPONSIVIDADE*/
 @media (min-width: 768px) {
@@ -236,3 +279,4 @@ aside button:hover {
   }
 
 }
+
