@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -11,72 +13,86 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
   line-height: 1.6;
-  color: #222;
-  background-color: #f5f5f5;
+  color: #181736;
+  background-color: #eaf4f2;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+h1, h2, h3, h4, h5, h6, .logo {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
 /*CABEÇALHO*/
 header {
-  background-color: #004d40;
-  color: #fff;
+  background-color: #181736;
+  color: #eaf4f2;
   padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   font-size: 1.8rem;
-  text-align: center;
+  color: #aec7c3;
+  text-align: left;
+  flex: 1;
 }
 
 .navegacao {
   list-style: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  flex: 1;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
 .navegacao a {
-  color: #fff;
+  color: #aec7c3;
   text-decoration: none;
   font-weight: bold;
 }
 
 .navegacao a:hover {
+  color: #eaf4f2;
   text-decoration: underline;
 }
 
 /*BARRA DE PESQUISA*/
 .pesquisa {
+  flex: 2;
   display: flex;
   justify-content: center;
-  margin: 1rem auto;
+  margin: 0;
   max-width: 400px;
 }
 
 .pesquisa input {
   flex: 1;
   padding: 0.5rem;
-  border: 1px solid #ccc;
+  border: 1px solid #728991;
   border-radius: 6px 0 0 6px;
   font-size: 1rem;
+  background-color: #eaf4f2;
+  color: #181736;
 }
 
 .pesquisa button {
   padding: 0.5rem 1rem;
-  background-color: #00796b;
+  background-color: #728991;
   border: none;
-  color: #fff;
+  color: #eaf4f2;
   border-radius: 0 6px 6px 0;
   cursor: pointer;
 }
 
 .pesquisa button:hover {
-  background-color: #004d40;
+  background-color: #181736;
 }
 
 /*CONTEÚDO PRINCIPAL*/
@@ -87,33 +103,33 @@ main {
   margin: 0 auto;
   background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  box-shadow: 0 0 10px rgba(24,23,54,0.05);
 }
 
 /*MAPA E ASIDE*/
 #mapa {
-  background-color: #e0e0e0;
+  background-color: #aec7c3;
   height: 300px;
   border-radius: 6px;
   margin: 1rem 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #555;
+  color: #181736;
   font-style: italic;
 }
 
 aside {
-  background: #fafafa;
-  border: 1px solid #ccc;
+  background: #eaf4f2;
+  border: 1px solid #aec7c3;
   padding: 1rem;
   border-radius: 6px;
   margin-top: 1rem;
 }
 
 aside button {
-  background-color: #004d40;
-  color: white;
+  background-color: #728991;
+  color: #eaf4f2;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -121,7 +137,7 @@ aside button {
 }
 
 aside button:hover {
-  background-color: #00796b;
+  background-color: #181736;
 }
 
 /*CATEGORIAS*/
@@ -135,9 +151,9 @@ aside button:hover {
 
 .categorias button {
   padding: 0.5rem 1rem;
-  border: 1px solid #004d40;
-  background-color: #fff;
-  color: #004d40;
+  border: 1px solid #728991;
+  background-color: #eaf4f2;
+  color: #181736;
   border-radius: 20px;
   cursor: pointer;
   font-size: 0.95rem;
@@ -145,26 +161,109 @@ aside button:hover {
 }
 
 .categorias button:hover {
-  background-color: #004d40;
-  color: #fff;
+  background-color: #aec7c3;
+  color: #181736;
 }
 
 /*RODAPÉ*/
 .rodape {
-  background-color: #004d40;
-  color: #fff;
+  background-color: #181736;
+  color: #eaf4f2;
   text-align: center;
   padding: 1rem;
   margin-top: auto;
 }
 
 .rodape a {
-  color: #fff;
+  color: #aec7c3;
   text-decoration: none;
 }
 
 .rodape a:hover {
+  color: #eaf4f2;
   text-decoration: underline;
+}
+
+/* Card do catálogo */
+.card {
+  background: #fff;
+  border: 1px solid #aec7c3;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(24,23,54,0.08);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 24px rgba(24,23,54,0.16);
+  border-color: #728991;
+}
+
+.card h3 {
+  color: #181736;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #728991;
+}
+
+.card a {
+  align-self: flex-end;
+  background: #aec7c3;
+  color: #181736;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.card a:hover {
+  background: #728991;
+  color: #eaf4f2;
+}
+
+/* Estilização moderna para qualquer formulário de cadastro */
+.formulario label {
+  color: #181736;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #aec7c3;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #eaf4f2;
+  color: #181736;
+  margin-bottom: 0.8rem;
+}
+
+.formulario button[type="submit"] {
+  background: #aec7c3;
+  color: #181736;
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-end;
+  transition: background 0.2s;
+}
+
+.formulario button[type="submit"]:hover {
+  background: #728991;
+  color: #eaf4f2;
 }
 
 /*RESPONSIVIDADE*/
