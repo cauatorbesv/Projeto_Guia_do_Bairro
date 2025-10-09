@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap');
-
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"');
 * {
   margin: 0;
   padding: 0;
@@ -108,15 +108,20 @@ main {
 
 /*MAPA E ASIDE*/
 #mapa {
-  background-color: #aec7c3;
-  height: 300px;
   border-radius: 6px;
   margin: 1rem 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #181736;
-  font-style: italic;
+  
+  /* IMPORTANTE: Isso vai "cortar" a imagem para respeitar as bordas arredondadas */
+  overflow: hidden; 
+  
+  /* O display flex e as outras propriedades de alinhamento não são mais necessários aqui */
+}
+
+/* NOVO ESTILO PARA A IMAGEM */
+#mapa img {
+  width: 100%;       /* Faz a imagem ocupar toda a largura da div */
+  height: 100%;      /* Faz a imagem ocupar toda a altura da div */
+  object-fit: cover; /* ESSA é a mágica aqui: funciona como o 'background-size: cover' */
 }
 
 aside {
@@ -134,6 +139,13 @@ aside button {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   cursor: pointer;
+}
+aside button a {
+  text-decoration: none; 
+  color: white;
+}
+aside button a:visited {
+  color: white; 
 }
 
 aside button:hover {
