@@ -1,0 +1,305 @@
+/* ===== IMPORTS: fontes e ícones utilizados no projeto ===== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"');
+
+/* ===== RESET GLOBAL: remove margens/paddings padrões e define box-sizing ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== ESTILO GLOBAL: tipografia, cores base e comportamento do documento ===== */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth; /* rolagem suave ao navegar por âncoras */
+}
+
+body {
+  /* fonte principal, altura de linha e cores de fundo/texto */
+  font-family: 'Nunito', Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: #181736;
+  background-color: #eaf4f2;
+  display: flex; /* layout em coluna para permitir footer fixo ao fundo */
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Titulos e logo usam fonte secundária para destaque */
+h1, h2, h3, h4, h5, h6, .logo {
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+/* ===== CABEÇALHO: área superior com logo e navegação ===== */
+header {
+  background-color: #181736;
+  color: #eaf4f2;
+  padding: 1rem;
+  display: flex; /* organiza logo, navegação e pesquisa em uma linha */
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Estilo da logo no cabeçalho */
+.logo {
+  font-size: 1.8rem;
+  color: #aec7c3;
+  text-align: left;
+  flex: 1; /* ocupa espaço disponível para empurrar a navegação */
+}
+
+/* ===== NAVEGAÇÃO: lista de links do menu principal ===== */
+.navegacao {
+  list-style: none; /* remove marcadores */
+  display: flex; /* exibe itens em linha */
+  justify-content: flex-end;
+  flex: 1;
+  flex-wrap: wrap; /* quebra em múltiplas linhas se necessário */
+  gap: 1rem; /* espaçamento entre itens */
+}
+
+/* Links da navegação */
+.navegacao a {
+  color: #aec7c3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navegacao a:hover {
+  color: #eaf4f2;
+  text-decoration: underline; /* evidencia o link ao passar o mouse */
+}
+
+/* ===== BARRA DE PESQUISA: campo e botão de busca no cabeçalho ===== */
+.pesquisa {
+  flex: 2; /* ocupa mais espaço que logo e navegação */
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  max-width: 400px; /* limita largura da barra de pesquisa */
+}
+
+.pesquisa input {
+  flex: 1;
+  padding: 0.5rem;
+  border: 1px solid #728991;
+  border-radius: 6px 0 0 6px; /* cantos arredondados apenas à esquerda */
+  font-size: 1rem;
+  background-color: #eaf4f2;
+  color: #181736;
+}
+
+.pesquisa button {
+  padding: 0.5rem 1rem;
+  background-color: #728991;
+  border: none;
+  color: #eaf4f2;
+  border-radius: 0 6px 6px 0; /* cantos arredondados apenas à direita */
+  cursor: pointer;
+}
+
+.pesquisa button:hover {
+  background-color: #181736; /* efeito hover para o botão */
+}
+
+/* ===== CONTEÚDO PRINCIPAL: container central para o conteúdo das páginas ===== */
+main {
+  flex: 1; /* permite que main cresça e empurre o rodapé para baixo */
+  padding: 1rem;
+  max-width: 1000px; /* largura máxima para leitura confortável */
+  margin: 0 auto; /* centraliza horizontalmente */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(24,23,54,0.05); /* sombra sutil */
+}
+
+/* ===== MAPA E ASIDE: área do mapa e bloco lateral ===== */
+#mapa {
+  border-radius: 6px;
+  margin: 1rem 0;
+  overflow: hidden; /* evita que a imagem exceda o contêiner */
+}
+
+/* Estilo para imagens dentro do mapa: preencher o contêiner mantendo proporção */
+#mapa img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bloco lateral com botões e informações adicionais */
+aside {
+  background: #eaf4f2;
+  border: 1px solid #aec7c3;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+aside button {
+  background-color: #728991;
+  color: #eaf4f2;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+aside button a {
+  text-decoration: none; 
+  color: white; /* garante cor consistente para links dentro de botões */
+}
+aside button a:visited {
+  color: white; 
+}
+
+aside button:hover {
+  background-color: #181736; /* hover escuro para destaque */
+}
+
+/* ===== CATEGORIAS: botões de filtro/etiquetas ===== */
+.categorias {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.categorias button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #728991;
+  background-color: #eaf4f2;
+  color: #181736;
+  border-radius: 20px; /* aparência de pílula */
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease; /* transição suave ao interagir */
+}
+
+.categorias button:hover {
+  background-color: #aec7c3;
+  color: #181736;
+}
+
+/* ===== RODAPÉ: área inferior do site ===== */
+.rodape {
+  background-color: #181736;
+  color: #eaf4f2;
+  text-align: center;
+  padding: 1rem;
+  margin-top: auto; /* empurra o rodapé para o final da página */
+}
+
+.rodape a {
+  color: #aec7c3;
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  color: #eaf4f2;
+  text-decoration: underline;
+}
+
+/* ===== FORMULÁRIO: rótulos, inputs e botão de envio ===== */
+.formulario label {
+  color: #181736;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+
+.formulario input,
+.formulario textarea,
+.formulario select {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #aec7c3;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #eaf4f2;
+  color: #181736;
+  margin-bottom: 0.8rem;
+}
+
+.formulario button[type="submit"] {
+  background: #aec7c3;
+  color: #181736;
+  border: none;
+  border-radius: 20px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  align-self: flex-end; /* posiciona o botão no final do flex container */
+  transition: background 0.2s;
+}
+
+.formulario button[type="submit"]:hover {
+  background: #728991;
+  color: #eaf4f2;
+}
+
+/* ===== CARTÕES (card): blocs reutilizáveis para conteúdo/serviços ===== */
+.card {
+  background: #fff;
+  border: 1px solid #aec7c3;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(24,23,54,0.08);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card:hover {
+  box-shadow: 0 4px 24px rgba(24,23,54,0.16);
+  border-color: #728991;
+}
+
+.card h3 {
+  color: #181736;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #728991;
+}
+
+.card a {
+  align-self: flex-end;
+  background: #aec7c3;
+  color: #181736;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.card a:hover {
+  background: #728991;
+  color: #eaf4f2;
+}
+
+/* ===== RESPONSIVIDADE: ajustes para telas maiores ===== */
+@media (min-width: 768px) {
+  /* aumenta a largura máxima da barra de pesquisa em telas maiores */
+  .pesquisa {
+    max-width: 500px;
+  }
+
+  /* mais espaçamento entre categorias em desktop */
+  .categorias {
+    gap: 1rem;
+  }
+
+  /* altura fixa do mapa em telas maiores */
+  #mapa {
+    height: 400px;
+  }
+
+}
+
+
