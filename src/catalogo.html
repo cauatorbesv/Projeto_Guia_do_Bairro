@@ -9,8 +9,8 @@
     <!-- Cabeçalho -->
     <header>
         <div class="logo">Guia do Bairro</div>
-        <form class="pesquisa">
-            <input type="text" placeholder="Buscar por serviço ou comércio">
+        <form class="pesquisa" action="catalogo.html" method="GET"> 
+            <input type="text" name="q" id="input-busca" placeholder="Buscar por serviço ou comércio">
             <button type="submit">🔍</button>
         </form>
         <ul class="navegacao">
@@ -21,6 +21,7 @@
     </header>
     <main>
         <section>
+            
             <h1>Catálogo de Comércio</h1>
             <p>Explore os serviços e comércios disponíveis na sua área.</p>
             <h2>Categorias</h2>
@@ -33,7 +34,7 @@
             </div>
         </section>
         <!-- Opções no catálogo -->
-        <section>
+        <section id="lista-estabelecimentos">
             <article class="card comercio alimentacao">
                 <h3>Padaria do João</h3>
                 <p>Pães fresquinhos todos os dias, atendimento rápido e preços justos.</p>
@@ -53,5 +54,39 @@
             <a href="politicadeprivacidade.html">Política de Privacidade</a>
         </nav>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Pega o termo de busca da URL
+            const params = new URLSearchParams(window.location.search);
+            const termoBusca = params.get('q');
+            
+            // Pega os elementos HTML
+            const inputBusca = document.getElementById('input-busca');
+            // Busca todos os cards dentro da seção que você identificou
+            const itensCatalogo = document.querySelectorAll('#lista-estabelecimentos .card');
+            
+            if (termoBusca) {
+                const termoBuscaLower = termoBusca.toLowerCase();
+                
+                // Preenche o campo de busca com o termo (opcional, mas útil)
+                if (inputBusca) {
+                    inputBusca.value = termoBusca;
+                }
+                
+                // 2. Filtra os itens
+                itensCatalogo.forEach(function(item) {
+                    // Pega o texto do item (Padaria do João, descrição, etc.)
+                    const textoItem = item.textContent.toLowerCase();
+                    
+                    if (textoItem.includes(termoBuscaLower)) {
+                        item.style.display = ''; 
+                    } else {
+                        item.style.display = 'none'; // Esconde o item
+                    }
+                });
+            } 
+            // Se não houver termo de busca, todos os itens permanecem visíveis por padrão do HTML.
+        });
+    </script>
 </body>
 </html>
