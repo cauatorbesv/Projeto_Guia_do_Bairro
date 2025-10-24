@@ -1,45 +1,70 @@
 document.addEventListener('DOMContentLoaded', function() {
-            // ... (Seu código de busca por texto JÁ EXISTENTE aqui) ...
-            
-            // ------------------------------------------------------------------
-            // NOVO CÓDIGO PARA FILTRAR POR CATEGORIA
-            // ------------------------------------------------------------------
-            
-            const botoes = document.querySelectorAll('#botoes-categoria button');
-            const itensCatalogo = document.querySelectorAll('#lista-estabelecimentos .card');
+            const params = new URLSearchParams(window.location.search);
+            const termoBusca = params.get('q');
+            const categoriaFiltro = params.get('cat'); // LÊ O FILTRO VINDO DO index.html
 
-            botoes.forEach(botao => {
-                botao.addEventListener('click', function() {
-                    const categoriaSelecionada = botao.getAttribute('data-categoria');
-                    
-                    // 1. Limpa a classe 'ativo' de todos os botões (para estilização opcional)
-                    botoes.forEach(b => b.classList.remove('ativo')); 
-                    // 2. Adiciona a classe 'ativo' apenas no botão clicado
-                    botao.classList.add('ativo'); 
+            const inputBusca = document.getElementById('input-busca');
+            const listaEstabelecimentos = document.getElementById('lista-estabelecimentos');
+            
+            // Garante que o elemento existe antes de tentar buscar os cards
+            if (!listaEstabelecimentos) return;
+            
+            const itensCatalogo = listaEstabelecimentos.querySelectorAll('.card');
 
-                    // 3. Filtra os cards
-                    itensCatalogo.forEach(item => {
-                        const categoriaItem = item.getAttribute('data-categoria');
-                        
-                        // Se for 'todos' ou se a categoria do item for a selecionada
-                        if (categoriaSelecionada === 'todos' || categoriaItem === categoriaSelecionada) {
-                            item.style.display = ''; // Mostra o item
-                        } else {
-                            item.style.display = 'none'; // Esconde o item
+            // Define qual filtro será aplicado no carregamento
+            let filtroAtivo = { tipo: null, valor: null };
+
+            if (termoBusca) {
+                filtroAtivo = { tipo: 'texto', valor: termoBusca.toLowerCase() };
+                if (inputBusca) inputBusca.value = termoBusca;
+            } else if (categoriaFiltro) {
+                filtroAtivo = { tipo: 'categoria', valor: categoriaFiltro.toLowerCase() };
+            }
+            
+            // ---------------------------------------------
+            // Lógica de Filtro Principal
+            // ---------------------------------------------
+
+            itensCatalogo.forEach(function(item) {
+                let deveMostrar = true;
+                
+                if (filtroAtivo.tipo) {
+                    const textoItem = item.textContent.toLowerCase();
+                    const categoriaItem = item.getAttribute('data-categoria');
+
+                    if (filtroAtivo.tipo === 'texto') {
+                        // Filtra por texto
+                        if (!textoItem.includes(filtroAtivo.valor)) {
+                            deveMostrar = false;
                         }
-                    });
-                    
-                    // Opcional: Limpa o campo de busca de texto após filtrar por categoria
-                    document.getElementById('input-busca').value = ''; 
-                });
+                    } else if (filtroAtivo.tipo === 'categoria') {
+                        // Filtra por categoria
+                        if (categoriaItem !== filtroAtivo.valor) {
+                            deveMostrar = false;
+                        }
+                    }
+                }
+
+                // Aplica o display. Usa '' para manter o CSS original (corrigindo o layout)
+                item.style.display = deveMostrar ? '' : 'none';
             });
             
-            // ------------------------------------------------------------------
-            // CHAME O FILTRO DE TEXTO MANUALMENTE AO CARREGAR
-            // (Para garantir que a busca da URL funcione no carregamento)
-            // ------------------------------------------------------------------
+            // ---------------------------------------------
+            // Lógica para Botões Internos do Catálogo
+            // ---------------------------------------------
             
-            // Este bloco usa a função que você já tem para aplicar o filtro ao carregar
-            // (Assumindo que você manteve o script de busca por texto que resolvemos antes)
-        
+            // Isso garante que os botões dentro do próprio catalogo.html funcionem
+            const botoesInternos = document.querySelectorAll('.categorias button');
+            botoesInternos.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const categoria = botao.getAttribute('data-categoria');
+                    let urlRedirecionamento = 'catalogo.html';
+                    
+                    if (categoria !== 'todos') {
+                         // Redireciona a si mesmo com o novo filtro de categoria
+                         urlRedirecionamento += '?cat=' + categoria;
+                    }
+                    window.location.href = urlRedirecionamento;
+                });
+            });
         });
