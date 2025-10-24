@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- Cabeçalho -->
     <header>
        <div class="logo">Guia do Bairro</div>
         <form class="pesquisa" action="catalogo.html" method="GET">
@@ -22,43 +21,42 @@
         </ul>
     </header>
     
-    <!-- Mapa e informações -->
     <main>
-    <section aria-label="Mapa de negócios locais">
+        <section aria-label="Mapa de negócios locais" id="lista-estabelecimentos-index"> 
             <h1>Mapa</h1>
-            <!--API do mapa (Google maps ou outro)-->
             *MAPA INTERATIVO*
-         <div id="mapa" role="application">
-            <img src="imagens/mapa.png" alt="Descrição da imagem para acessibilidade">
-        </div>
-        <!--Comércio selecionado no mapa-->
-        <aside>
-            <h1>Padaria do João</h1>
-        <div>Categoria: Alimentação</div>
-       <p>Pães fresquinhos todos os dias, atendimento rápido e preços justos.</p>
-        <button><a href="padaria.html"> Ver Página Completa</a></button>
-        </aside>
-        <aside>
-        <h1>Oficina Mecânica Souza</h1>
-        <div>Categoria: Outros</div>
-        <p>Especializada em manutenção de veículos.</p>
-        <button><a href="oficina.html"> Ver Página Completa</a></button>
-        </aside>
-    </section>
+            <div id="mapa" role="application">
+                <img src="imagens/mapa.png" alt="Descrição da imagem para acessibilidade">
+            </div>
+            
+            <aside class="card-comercio" data-categoria="alimentacao"> 
+                <h1>Padaria do João</h1>
+                <div>Categoria: Alimentação</div>
+                <p>Pães fresquinhos todos os dias, atendimento rápido e preços justos.</p>
+                <button><a href="padaria.html"> Ver Página Completa</a></button>
+            </aside>
+            
+            <aside class="card-comercio" data-categoria="outros">
+                <h1>Oficina Mecânica Souza</h1>
+                <div>Categoria: Outros</div>
+                <p>Especializada em manutenção de veículos.</p>
+                <button><a href="oficina.html"> Ver Página Completa</a></button>
+            </aside>
+        </section>
 
-    <!-- Categorias -->
-    <section aria-label="Categorias">
-        <h3>Categorias</h3>
-        <div class="categorias">
-            <button>🍔 Alimentação</button>
-            <button>❤️ Saúde e Bem-Estar</button>
-            <button> 🏠Serviços Domésticos</button>
-            <button>📚 Educação</button>
-            <button>⚙️ Outros</button>
-        </div>
-    </section>
+        <section aria-label="Categorias">
+            <h3>Categorias</h3>
+            <div class="categorias" id="botoes-categoria">
+                <button data-categoria="alimentacao">🍔 Alimentação</button>
+                <button data-categoria="saude">❤️ Saúde e Bem-Estar</button>
+                <button data-categoria="domesticos">🏠 Serviços Domésticos</button>
+                <button data-categoria="educacao">📚 Educação</button>
+                <button data-categoria="outros">⚙️ Outros</button>
+                <button data-categoria="todos" id="btn-todos">✨ Todos</button> 
+            </div>
+        </section>
     </main>
-    <!-- Rodapé -->
+    
     <footer class="rodape">
         <nav>
             <a href="sobre.html">Sobre</a> |
@@ -66,7 +64,33 @@
             <a href="politicadeprivacidade.html">Política de Privacidade</a>
         </nav>
     </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pega todos os botões de categoria que têm o atributo data-categoria
+            const botoesCategoria = document.querySelectorAll('#botoes-categoria button');
+            const urlCatalogo = 'catalogo.html';
 
+            botoesCategoria.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const categoria = botao.getAttribute('data-categoria');
+                    
+                    let urlRedirecionamento;
+
+                    if (categoria === 'todos') {
+                        // Se for 'Todos', redireciona para o catálogo sem filtro
+                        urlRedirecionamento = urlCatalogo;
+                    } else {
+                        // Redireciona para o catálogo com o filtro da categoria
+                        // Usamos 'cat=' para que o catalogo.html saiba que é um filtro de categoria.
+                        urlRedirecionamento = urlCatalogo + '?cat=' + categoria;
+                    }
+                    
+                    // Redireciona a página atual para o catálogo
+                    window.location.href = urlRedirecionamento;
+                });
+            });
+        });
+    </script>
 </body>
-
 </html>
