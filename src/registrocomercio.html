@@ -11,7 +11,8 @@
     <!-- Cabeçalho -->
     <header>
        <div class="logo">Guia do Bairro</div>
-        <form class="pesquisa" action="catalogo.html" method="GET">
+       <button class="btn-menu" aria-label="Abrir Menu">☰</button> 
+       <form class="pesquisa" action="catalogo.html" method="GET">
             <input type="text" name="q" placeholder="Buscar no site...">
             <button type="submit">🔍</button>
         </form>
@@ -25,15 +26,15 @@
         <section>
             <h1>Cadastre seu comércio</h1>
             <p>Preencha os dados do seu comércio para concluir seu cadastro!</p>
-            <form id="form-cadastro" class="formulario">
+            <form id="form-cadastro" class="formulario" novalidate>
                 <label for="nome-comercio">Nome do comércio</label><br>
-                <input type="text" id="nome-comercio" name="nome-comercio" placeholder="Nos diga o nome do seu negócio" required><br><br>
+                <input type="text" id="nome-comercio" name="nome-comercio" placeholder="Nos diga o nome do seu negócio"><br><br>
                 
                 <label for="descricao">Descrição:</label><br>
                 <textarea id="descricao" name="descricao" rows="4" cols="50" placeholder="Nos diga sobre seu negócio..."></textarea><br><br>
 
                 <label for="categoria">Categoria</label><br>
-                <select id="categoria" name="categoria" required>
+                <select id="categoria" name="categoria">
                     <option value="">Selecione uma categoria</option>
                     <option value="alimentacao">🍔 Alimentação</option>
                     <option value="saude">❤️ Saúde e Bem-Estar</option>
@@ -62,9 +63,9 @@
             <a href="politicadeprivacidade.html">Política de Privacidade</a>
         </nav>
     </footer>
-
+    <script src="js/validacao.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
-
 

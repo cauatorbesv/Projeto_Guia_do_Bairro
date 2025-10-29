@@ -9,6 +9,7 @@
     <!-- Cabeçalho -->
     <header>
         <div class="logo">Guia do Bairro</div>
+        <button class="btn-menu" aria-label="Abrir Menu">☰</button>
         <form class="pesquisa" action="catalogo.html" method="GET">
             <input type="text" name="q" placeholder="Buscar no site...">
             <button type="submit">🔍</button>
@@ -57,53 +58,8 @@
             <a href="politicadeprivacidade.html">Política de Privacidade</a>
         </nav>
     </footer>
-    <script src="js/catalogo.js">
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. Pega o termo de busca da URL
-            const params = new URLSearchParams(window.location.search);
-            const termoBusca = params.get('q');
-            
-            // Pega os elementos HTML
-            const inputBusca = document.getElementById('input-busca');
-            // Busca todos os cards dentro da seção que você identificou
-            const itensCatalogo = document.querySelectorAll('#lista-estabelecimentos .card');
-            
-            if (termoBusca) {
-                const termoBuscaLower = termoBusca.toLowerCase();
-                
-                // Preenche o campo de busca com o termo (opcional, mas útil)
-                if (inputBusca) {
-                    inputBusca.value = termoBusca;
-                }
-                
-                // 2. Filtra os itens
-                itensCatalogo.forEach(function(item) {
-                    // Pega o texto do item (Padaria do João, descrição, etc.)
-                    const textoItem = item.textContent.toLowerCase();
-                    
-                    if (textoItem.includes(termoBuscaLower)) {
-                        item.style.display = ''; 
-                    } else {
-                        item.style.display = 'none'; // Esconde o item
-                    }
-                });
-            } 
-            // Se não houver termo de busca, todos os itens permanecem visíveis por padrão do HTML.
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // ... (Seu código de busca por texto JÁ EXISTENTE aqui) ...
-            
-            // ------------------------------------------------------------------
-            // NOVO CÓDIGO PARA FILTRAR POR CATEGORIA
-            // ------------------------------------------------------------------
-            
-            const botoes = document.querySelectorAll('#botoes-categoria button');
-            const itensCatalogo = document.querySelectorAll('#lista-estabelecimentos .card');
-
-            });
-
-    </script>
+    <script src="js/catalogo.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
 

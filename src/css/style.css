@@ -1,6 +1,6 @@
 /* ===== IMPORTS: fontes e ícones utilizados no projeto ===== */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
 
 /* ===== RESET GLOBAL: remove margens/paddings padrões e define box-sizing ===== */
 * {
@@ -31,39 +31,43 @@ h1, h2, h3, h4, h5, h6, .logo {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
-/* ===== CABEÇALHO: área superior com logo e navegação ===== */
+/* ===== CABEÇALHO: Estilos base para MOBILE ===== */
 header {
   background-color: #181736;
   color: #eaf4f2;
   padding: 1rem;
-  display: flex; /* organiza logo, navegação e pesquisa em uma linha */
-  align-items: center;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column; /* Faz os itens se empilharem */
+  align-items: center; /* Centraliza os itens empilhados */
+  gap: 1rem; /* Adiciona um espaço entre os itens empilhados */
 }
 
-/* Estilo da logo no cabeçalho */
 .logo {
   font-size: 1.8rem;
   color: #aec7c3;
-  text-align: left;
-  flex: 1; /* ocupa espaço disponível para empurrar a navegação */
+  text-align: center; /* Garante que o logo fique centralizado */
 }
 
-/* ===== NAVEGAÇÃO: lista de links do menu principal ===== */
+.pesquisa {
+  display: flex;
+  width: 100%; /* Ocupa toda a largura no mobile */
+  max-width: 500px; /* Limita a largura máxima */
+}
+
 .navegacao {
-  list-style: none; /* remove marcadores */
-  display: flex; /* exibe itens em linha */
-  justify-content: flex-end;
-  flex: 1;
-  flex-wrap: wrap; /* quebra em múltiplas linhas se necessário */
-  gap: 1rem; /* espaçamento entre itens */
+  list-style: none;
+  display: flex;
+  flex-direction: column; /* Links do menu também empilhados */
+  align-items: center; /* Centraliza os links */
+  width: 100%;
+  gap: 0.5rem; /* Espaço entre os links */
 }
 
-/* Links da navegação */
 .navegacao a {
   color: #aec7c3;
   text-decoration: none;
   font-weight: bold;
+  padding: 0.5rem; /* Adiciona área de clique maior */
 }
 
 .navegacao a:hover {
@@ -239,7 +243,27 @@ aside button:hover {
   color: #eaf4f2;
 }
 
-/* ===== CARTÕES (card): blocs reutilizáveis para conteúdo/serviços ===== */
+/* ===== ESTILOS DO MENU HAMBÚRGUER (MOBILE) ===== */
+
+.btn-menu {
+  display: block; /* Visível apenas no mobile */
+  background: none;
+  border: none;
+  color: #eaf4f2;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.navegacao {
+  display: none; /* Esconde a navegação por padrão no mobile */
+}
+
+/* Classe que o JavaScript vai adicionar/remover */
+.navegacao.aberto {
+  display: flex;
+}
+
+/* ===== card: blocs reutilizáveis para conteúdo/serviços ===== */
 .card {
   background: #fff;
   border: 1px solid #aec7c3;
@@ -285,21 +309,41 @@ aside button:hover {
 
 /* ===== RESPONSIVIDADE: ajustes para telas maiores ===== */
 @media (min-width: 768px) {
-  /* aumenta a largura máxima da barra de pesquisa em telas maiores */
+  
+  header {
+    flex-direction: row; /* Volta a ser uma linha */
+    justify-content: space-between;
+  }
+
+  .btn-menu {
+    display: none;
+  }
+
+
+  .logo {
+    text-align: left; /* Alinha o logo à esquerda */
+    flex: 1;
+  }
+  
   .pesquisa {
-    max-width: 500px;
+    flex: 2; /* Ocupa mais espaço */
+    justify-content: center;
+    margin: 0 1rem; /* Adiciona margens para não colar no logo/nav */
   }
 
-  /* mais espaçamento entre categorias em desktop */
-  .categorias {
+  /* A navegação volta a ser uma linha também */
+  .navegacao {
+    flex-direction: row;
+    justify-content: flex-end;
+    flex: 1;
     gap: 1rem;
+    display: flex; /* Garante que a navegação esteja sempre visível no desktop */
+    flex-direction: row; /* E em formato de linha */
   }
 
-  /* altura fixa do mapa em telas maiores */
-  #mapa {
-    height: 400px;
+  .navegacao a {
+    padding: 0; /* Remove o padding extra da versão mobile */
   }
-
 }
 
 
