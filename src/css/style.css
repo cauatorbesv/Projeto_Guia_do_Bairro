@@ -1,15 +1,14 @@
-/* ===== IMPORTS: fontes e ícones utilizados no projeto ===== */
+/* IMPORTS: fontes utilizados no projeto */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Poppins:wght@400;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
 
-/* ===== RESET GLOBAL: remove margens/paddings padrões e define box-sizing ===== */
+/* RESET GLOBAL: remove margens/paddings padrões e define box-sizing */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ===== ESTILO GLOBAL: tipografia, cores base e comportamento do documento ===== */
+/* ESTILO GLOBAL: tipografia, cores base e comportamento do documento */
 html {
   font-size: 16px;
   scroll-behavior: smooth; /* rolagem suave ao navegar por âncoras */
@@ -31,7 +30,7 @@ h1, h2, h3, h4, h5, h6, .logo {
   font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
-/* ===== CABEÇALHO: Estilos base para MOBILE ===== */
+/* CABEÇALHO: Estilos base para MOBILE */
 header {
   background-color: #181736;
   color: #eaf4f2;
@@ -107,7 +106,7 @@ header {
   background-color: #181736; /* efeito hover para o botão */
 }
 
-/* ===== CONTEÚDO PRINCIPAL: container central para o conteúdo das páginas ===== */
+/* container central para o conteúdo das páginas*/
 main {
   flex: 1; /* permite que main cresça e empurre o rodapé para baixo */
   padding: 1rem;
@@ -205,7 +204,7 @@ aside button:hover {
   text-decoration: underline;
 }
 
-/* ===== FORMULÁRIO: rótulos, inputs e botão de envio ===== */
+/* FORMULÁRIO: rótulos, inputs e botão de envio */
 .formulario label {
   color: #181736;
   font-weight: bold;
@@ -222,7 +221,10 @@ aside button:hover {
   font-size: 1rem;
   background: #eaf4f2;
   color: #181736;
-  margin-bottom: 0.8rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem; /* Este será o novo espaço entre os campos */
 }
 
 .formulario button[type="submit"] {
@@ -243,7 +245,76 @@ aside button:hover {
   color: #eaf4f2;
 }
 
-/* ===== ESTILOS DO MENU HAMBÚRGUER (MOBILE) ===== */
+/* ESTILOS PARA VALIDAÇÃO DE FORMULÁRIO */
+
+/* Estilo para a mensagem de erro (escondida por padrão) */
+.mensagem-erro {
+  color: #c0392b; /* Um tom de vermelho */
+  font-size: 0.9rem; /* Um pouco menor que o texto normal */
+  margin-top: 4px;
+  display: none; /*Escondido por padrão */
+}
+
+/* Classe que o JavaScript vai adicionar para TORNAR a mensagem visível */
+.mensagem-erro.visivel {
+  display: block;
+}
+
+/* Classe que o JavaScript vai adicionar para DESTACAR o campo com erro */
+.formulario input.erro,
+.formulario select.erro,
+.formulario textarea.erro {
+  border-color: #c0392b; /* Borda vermelha para chamar atenção */
+  background-color: #fbeae5; /* Fundo levemente rosado */
+}
+
+/* ESTILOS PARA O ACCORDION (F.A.Q) */
+
+/* Estilo do botão da pergunta */
+.accordion-pergunta {
+  background-color: #eaf4f2;
+  color: #181736;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s ease;
+  border-bottom: 1px solid #aec7c3;
+}
+
+/* Adiciona um ícone de '+' antes da pergunta */
+.accordion-pergunta::before {
+  content: '\002B'; /* Código para o sinal de '+' */
+  color: #728991;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+/* Quando o botão estiver ativo (aberto), muda o ícone para '-' */
+.accordion-pergunta.ativo::before {
+  content: '\2212'; /* Código para o sinal de '-' */
+}
+
+.accordion-pergunta:hover {
+  background-color: #aec7c3;
+}
+
+/* Painel da resposta (escondido por padrão) */
+.accordion-resposta {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0; /*começa com altura zero */
+  overflow: hidden; /* esconde o conteúdo que transborda */
+  transition: max-height 0.3s ease-out; /* Animação suave */
+}
+
+/* ESTILOS DO MENU HAMBÚRGUER */
 
 .btn-menu {
   display: block; /* Visível apenas no mobile */
@@ -263,7 +334,7 @@ aside button:hover {
   display: flex;
 }
 
-/* ===== card: blocs reutilizáveis para conteúdo/serviços ===== */
+/* card: blocs reutilizáveis para conteúdo/serviços */
 .card {
   background: #fff;
   border: 1px solid #aec7c3;
@@ -307,7 +378,7 @@ aside button:hover {
   color: #eaf4f2;
 }
 
-/* ===== RESPONSIVIDADE: ajustes para telas maiores ===== */
+/* RESPONSIVIDADE: ajustes para telas maiores */
 @media (min-width: 768px) {
   
   header {
@@ -328,7 +399,7 @@ aside button:hover {
   .pesquisa {
     flex: 2; /* Ocupa mais espaço */
     justify-content: center;
-    margin: 0 1rem; /* Adiciona margens para não colar no logo/nav */
+    margin: 0 1rem; /* adiciona margens para não colar no logo/nav */
   }
 
   /* A navegação volta a ser uma linha também */
@@ -337,13 +408,11 @@ aside button:hover {
     justify-content: flex-end;
     flex: 1;
     gap: 1rem;
-    display: flex; /* Garante que a navegação esteja sempre visível no desktop */
-    flex-direction: row; /* E em formato de linha */
+    display: flex; /* garante que a navegação esteja sempre visível no desktop */
+    flex-direction: row; /* e em formato de linha */
   }
 
   .navegacao a {
-    padding: 0; /* Remove o padding extra da versão mobile */
+    padding: 0; /* remove o padding extra da versão mobile */
   }
 }
-
-

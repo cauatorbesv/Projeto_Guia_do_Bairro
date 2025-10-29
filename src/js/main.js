@@ -25,4 +25,27 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    // ACORDION DE PERGUNTAS FREQUENTES
+    const accordionItems = document.querySelectorAll('.accordion-pergunta');
+
+    accordionItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Adiciona/remove a classe 'ativo' para mudar o ícone (+/-)
+            this.classList.toggle('ativo');
+
+            // Seleciona o painel de resposta (que é o próximo elemento)
+            const resposta = this.nextElementSibling;
+
+            // Verifica se o painel já está aberto (se tem max-height)
+            if (resposta.style.maxHeight) {
+                // Se estiver aberto, fecha
+                resposta.style.maxHeight = null;
+            } else {
+                // Se estiver fechado, abre.
+                // scrollHeight é a altura total do conteúdo do elemento.
+                resposta.style.maxHeight = resposta.scrollHeight + 'px';
+            }
+        });
+    });
 });
+    

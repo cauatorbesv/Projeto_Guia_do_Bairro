@@ -22,18 +22,24 @@
             <li><a href="registrocomercio.html">Registrar Comércio</a></li>
         </ul>
     </header>
+    
     <main>
         <section>
-            <h1>Cadastre seu comércio</h1>
-            <p>Preencha os dados do seu comércio para concluir seu cadastro!</p>
             <form id="form-cadastro" class="formulario" novalidate>
-                <label for="nome-comercio">Nome do comércio</label><br>
-                <input type="text" id="nome-comercio" name="nome-comercio" placeholder="Nos diga o nome do seu negócio"><br><br>
-                
-                <label for="descricao">Descrição:</label><br>
-                <textarea id="descricao" name="descricao" rows="4" cols="50" placeholder="Nos diga sobre seu negócio..."></textarea><br><br>
+            <div class="form-group">
+                <label for="nome-comercio">Nome do comércio</label>
+                <input type="text" id="nome-comercio" name="nome-comercio" placeholder="Nos diga o nome do seu negócio">
+                <div class="mensagem-erro"></div>
+            </div>
+            
+            <div class="form-group"></div>
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="4" cols="50" placeholder="Nos diga sobre seu negócio..."></textarea>
+            <div class="mensagem-erro"></div>
+            </div>
 
-                <label for="categoria">Categoria</label><br>
+            <div class="form-group"></div>
+                <label for="categoria">Categoria</label>
                 <select id="categoria" name="categoria">
                     <option value="">Selecione uma categoria</option>
                     <option value="alimentacao">🍔 Alimentação</option>
@@ -41,17 +47,27 @@
                     <option value="servicos-domesticos">🏠 Serviços Domésticos</option>
                     <option value="educacao">📚 Educação</option>
                     <option value="outros">⚙️ Outros</option>
-                </select><br><br>
+                </select>
+                <div class="mensagem-erro"></div>
+            </div>
 
-                <label for="horario">Horário de Funcionamento:</label><br>
-                <input type="text" id="horario" name="horario" placeholder="Ex: Seg-Sex: 8h às 18h"><br><br>
+            <div class="form-group"></div>
+                <label for="horario">Horário de Funcionamento:</label>
+                <input type="text" id="horario" name="horario" placeholder="Ex: Seg-Sex: 8h às 18h">
+            </div>
 
-                <label for="endereco">Endereço</label><br>
-                <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123"><br><br>
+            <div class="form-group"></div>
+                <label for="endereco">Endereço</label>
+                <input type="text" id="endereco" name="endereco" placeholder="Ex: Rua das Flores, 123">
+            </div>
 
+            <div class="form-group"></div>
                 <label for="contato">Meios de contato</label>
-                <input type="text" id="contato" name="contato" placeholder="Ex: (44) 1234-5678"><br><br>
-                <button type="submit">Cadastrar</button>
+                <input type="text" id="contato" name="contato" placeholder="Ex: (44) 1234-5678">
+                <div class="mensagem-erro"></div>
+            </div>
+
+            <button type="submit">Cadastrar</button>
             </form>
         </section>
     </main>
