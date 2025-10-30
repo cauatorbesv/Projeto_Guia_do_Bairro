@@ -238,6 +238,7 @@ aside button:hover {
   cursor: pointer;
   align-self: flex-end; /* posiciona o botão no final do flex container */
   transition: background 0.2s;
+  margin-top: 1.5rem;
 }
 
 .formulario button[type="submit"]:hover {
@@ -415,4 +416,5 @@ aside button:hover {
   .navegacao a {
     padding: 0; /* remove o padding extra da versão mobile */
   }
+
 }
