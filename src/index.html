@@ -2,9 +2,15 @@
 <html lang="pt-BR">
 <head>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia do Bairro</title>
+    <style>
+        /* estilo mínimo para o mapa */
+        #map { height: 400px; width: 100%; border-radius: 6px; }
+    </style>
 </head>
 <body>
 
@@ -12,7 +18,7 @@
        <div class="logo">Guia do Bairro</div>
         <button class="btn-menu" aria-label="Abrir Menu">☰</button>
         <form class="pesquisa" action="catalogo.html" method="GET">
-            <input type="text" name="q" placeholder="Buscar no site..." autocomplete="off">
+            <input type="text" name="q" placeholder="Buscar no site...">
             <button type="submit">🔍</button>
         </form>
         <ul class="navegacao">
@@ -25,23 +31,20 @@
     <main>
         <section aria-label="Mapa de negócios locais" id="lista-estabelecimentos-index"> 
             <h1>Mapa</h1>
-            *MAPA INTERATIVO*
-            <div id="mapa" role="application">
-                <img src="imagens/mapa.png" alt="Descrição da imagem para acessibilidade">
-            </div>
+            <div id="map" role="application" aria-label="Mapa interativo com estabelecimentos"></div>
             
             <aside class="card-comercio" data-categoria="alimentacao"> 
                 <h1>Padaria do João</h1>
                 <div>Categoria: Alimentação</div>
                 <p>Pães fresquinhos todos os dias, atendimento rápido e preços justos.</p>
-                <button><a href="padaria.html"> Ver Página Completa</a></button>
+                <a href="padaria.html"> <button>Ver Página Completa</button></a>
             </aside>
             
             <aside class="card-comercio" data-categoria="outros">
                 <h1>Oficina Mecânica Souza</h1>
                 <div>Categoria: Outros</div>
                 <p>Especializada em manutenção de veículos.</p>
-                <button><a href="oficina.html"> Ver Página Completa</a></button>
+                <a href="oficina.html"> <button>Ver Página Completa</button></a>
             </aside>
         </section>
 
@@ -66,6 +69,58 @@
         </nav>
     </footer>
     <script src="js/main.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Inicializa o mapa centrado em Umuarama - PR e adiciona dois marcadores com endereços aleatórios
+        document.addEventListener('DOMContentLoaded', function() {
+            // Coordenadas aproximadas de Umuarama
+            const center = [-23.7570, -53.3200];
+            const map = L.map('map').setView(center, 14);
+
+            // Camada de tiles (OpenStreetMap)
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+            }).addTo(map);
+            // Dois estabelecimentos de exemplo em Umuarama - PR
+            const exemplos = [
+                { nome: 'Padaria Central', endereco: 'R. Aleatória, 123 - Centro, Umuarama - PR', coords: [-23.7535, -53.3190] },
+                { nome: 'Oficina do João', endereco: 'Av. Exemplo, 456 - Jardim Novo, Umuarama - PR', coords: [-23.7600, -53.3250] }
+            ];
+
+            // Função para adicionar marcador e manter lista de bounds
+            const bounds = [];
+            function adicionarMarcador(item, isSaved) {
+                const marker = L.marker(item.coords).addTo(map);
+                const popup = '<strong>' + (item.nome || 'Sem nome') + '</strong>' + (item.endereco ? ('<br>' + item.endereco) : '') + (item.categoria ? ('<br><em>' + item.categoria + '</em>') : '') + (isSaved ? '<br><small>Registrado</small>' : '');
+                marker.bindPopup(popup);
+                bounds.push(item.coords);
+            }
+
+            // Adiciona exemplos
+            exemplos.forEach(e => adicionarMarcador(e, false));
+
+            // Carrega comercios salvos no localStorage
+            try {
+                const salvos = JSON.parse(localStorage.getItem('comercios') || '[]');
+                if (Array.isArray(salvos)) {
+                    salvos.forEach(c => {
+                        if (c && c.coords && c.coords.length === 2) adicionarMarcador({ nome: c.nome, endereco: c.endereco, categoria: c.categoria, coords: c.coords }, true);
+                    });
+                }
+            } catch (err) {
+                console.warn('Erro ao ler comercios do localStorage', err);
+            }
+
+            // Ajusta view para incluir todos os marcadores, se houver
+            if (bounds.length) {
+                const latlngs = bounds.map(b => L.latLng(b[0], b[1]));
+                const bb = L.latLngBounds(latlngs);
+                map.fitBounds(bb.pad(0.25));
+            }
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Pega todos os botões de categoria que têm o atributo data-categoria

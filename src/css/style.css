@@ -124,6 +124,17 @@ main {
   overflow: hidden; /* evita que a imagem exceda o contêiner */
 }
 
+#map-registro { 
+  height: 300px; 
+  width: 100%; 
+  margin-top: 10px; 
+  border-radius:6px 
+}
+
+.form-row { 
+  margin-bottom: 8px 
+}
+
 /* Estilo para imagens dentro do mapa: preencher o contêiner mantendo proporção */
 #mapa img {
   width: 100%;
@@ -288,6 +299,14 @@ aside button:hover {
   border-bottom: 1px solid #aec7c3;
 }
 
+/* ===== ACESSIBILIDADE: foco visível no accordion ===== */
+.accordion-pergunta:focus,
+.accordion-pergunta:focus-visible {
+  outline: 3px solid #728991; /* borda visível no foco */
+  background-color: #aec7c3; /* realce leve */
+  color: #181736;
+}
+
 /* Adiciona um ícone de '+' antes da pergunta */
 .accordion-pergunta::before {
   content: '\002B'; /* Código para o sinal de '+' */
@@ -416,4 +435,5 @@ aside button:hover {
   .navegacao a {
     padding: 0; /* remove o padding extra da versão mobile */
   }
+
 }

@@ -1,56 +1,45 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    // --- ELEMENTOS GLOBAIS ---
+    // --- LÓGICA DE FILTRO POR CATEGORIA E BUSCA ---
+    const params = new URLSearchParams(window.location.search);
+    const termoBusca = params.get('q');
+    const categoriaFiltro = params.get('cat'); // LÊ O FILTRO VINDO DO index.html
+
     const listaEstabelecimentos = document.getElementById('lista-estabelecimentos');
-    if (!listaEstabelecimentos) return; // Sai se não estiver na página do catálogo
+
+    if (!listaEstabelecimentos) return; // Se não estiver na página do catálogo, não faz nada
 
     const itensCatalogo = listaEstabelecimentos.querySelectorAll('.card');
-    const botoesInternos = document.querySelectorAll('#botoes-categoria button');
 
-    // --- FUNÇÃO DE FILTRAGEM ---
-    // Esta função será usada tanto no carregamento quanto nos cliques
-    const aplicarFiltro = (filtro) => {
-        itensCatalogo.forEach(item => {
-            const categoriaItem = item.getAttribute('data-categoria');
-            
-            // Se o filtro for 'todos' OU a categoria do item for igual ao filtro, mostra o item.
-            // Caso contrário, esconde.
-            if (filtro === 'todos' || categoriaItem === filtro) {
-                item.style.display = ''; // Retorna ao display padrão do CSS
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    };
+    // Lógica de Filtro Principal
+    itensCatalogo.forEach(function(item) {
+        const textoItem = item.textContent.toLowerCase();
+        const categoriaItem = item.getAttribute('data-categoria');
+        let deveMostrar = true;
 
-    // --- LÓGICA 1: FILTRO INICIAL AO CARREGAR A PÁGINA ---
-    const params = new URLSearchParams(window.location.search);
-    const categoriaFiltroURL = params.get('cat');
+        // Se tem busca por texto
+        if (termoBusca && !textoItem.includes(termoBusca.toLowerCase())) {
+            deveMostrar = false;
+        }
 
-    // Se a URL veio com um filtro (ex: da index.html), aplica ele
-    if (categoriaFiltroURL) {
-        aplicarFiltro(categoriaFiltroURL);
-    }
+        // Se tem filtro por categoria
+        if (categoriaFiltro && categoriaItem !== categoriaFiltro) {
+            deveMostrar = false;
+        }
 
-    // --- LÓGICA 2: FILTRO "AO VIVO" AO CLICAR NOS BOTÕES ---
-    botoesInternos.forEach(botao => {
-        botao.addEventListener('click', function() {
-            // Pega a categoria do botão que foi clicado
-            const categoriaClicada = botao.getAttribute('data-categoria');
-            
-            // Chama a função de filtro para atualizar a página instantaneamente
-            aplicarFiltro(categoriaClicada);
-        });
+        item.style.display = deveMostrar ? '' : 'none';
     });
 
-    const termoBusca = params.get('q');
-    if (termoBusca) {
-        const termoBuscaLower = termoBusca.toLowerCase();
-        itensCatalogo.forEach(function(item) {
-            const textoItem = item.textContent.toLowerCase();
-            if (!textoItem.includes(termoBuscaLower)) {
-                item.style.display = 'none';
+    // --- LÓGICA PARA BOTÕES INTERNOS DO CATÁLOGO ---
+    const botoesInternos = document.querySelectorAll('#botoes-categoria button');
+    botoesInternos.forEach(botao => {
+        botao.addEventListener('click', function() {
+            const categoria = botao.getAttribute('data-categoria');
+            let urlRedirecionamento = 'catalogo.html';
+
+            if (categoria && categoria !== 'todos') {
+                 urlRedirecionamento += '?cat=' + categoria;
             }
+            window.location.href = urlRedirecionamento;
         });
-    }
+    });
 });
