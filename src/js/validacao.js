@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const contato = document.getElementById('contato');
     const endereco = document.getElementById('endereco');    
     const horario = document.getElementById('horario');
+    const inputLat = document.getElementById('lat'); 
+    const divMapa = document.getElementById('map-registro');
 
     // --- FUNÇÕES AJUDANTES ---
     const mostrarErro = (input, mensagem) => {
@@ -54,6 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
         limparErro(descricao);
         limparErro(categoria);
         limparErro(contato);
+        if (endereco) limparErro(endereco);
+        limparErro(horario)
+        limparErro(divMapa);
+        
 
         let formularioValido = true;
 
@@ -90,6 +96,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (horario.value.trim() === '') {
             formularioValido = false;
             mostrarErro(horario, 'Por favor, adicione o horário de funcionamento.');
+        }
+
+        if (inputLat.value.trim() === '') {
+        formularioValido = false;
+        mostrarErro(divMapa, 'Por favor, clique no mapa para definir a localização.');
         }
 
         // Se o formulário NÃO for válido, impede o envio

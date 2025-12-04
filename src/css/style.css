@@ -280,6 +280,11 @@ aside button:hover {
   background-color: #fbeae5; /* Fundo levemente rosado */
 }
 
+#map-registro.erro {
+  border: 2px solid #c0392b; /* Borda vermelha forte */
+  box-shadow: 0 0 8px rgba(192, 57, 43, 0.3); /* Um leve brilho vermelho */
+}
+
 /* ESTILOS PARA O ACCORDION (F.A.Q) */
 
 /* Estilo do botão da pergunta */
